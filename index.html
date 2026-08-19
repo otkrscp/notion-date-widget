@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* =========================
+       カスタマイズはこちら
+    ========================= */
+
+    body {
+      margin: 0;
+      padding: 0;
+
+      /* 文字の設定 */
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+
+      /* 文字色 */
+      color: #222;
+
+      /* 背景 */
+      background: transparent;
+
+      /* 中央配置 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 100vh;
+    }
+
+    #today {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="today"></div>
+
+  <script>
+    function displayToday() {
+
+      const today = new Date();
+
+      // 年
+      const year = today.getFullYear();
+
+      // 月（2桁）
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+
+      // 日（2桁）
+      const day = String(today.getDate()).padStart(2, '0');
+
+      // 曜日
+      const weekdays = [
+        'SUN',
+        'MON',
+        'TUE',
+        'WED',
+        'THU',
+        'FRI',
+        'SAT'
+      ];
+
+      const weekday = weekdays[today.getDay()];
+
+      // 表示
+      document.getElementById('today').textContent =
+        `${year}.${month}.${day} ${weekday}`;
+    }
+
+    // 初回表示
+    displayToday();
+
+    // 日付が変わったら自動更新
+    setInterval(displayToday, 60 * 1000);
+  </script>
+
+</body>
+</html>
